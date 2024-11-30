@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Availability</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+		<header>
+		<img src="images.png" alt="no image" id="headerImage"><h1>ISU Cauayan ROOM AVAILABILITY</h1>
+		</header>
+
+    <aside>
+        <button onclick="goBack()">Back</button>
+        <button onclick="openSettings()">Settings</button>
+        <button onclick="openAbout()">About</button>
+    </aside>
+    <main>
+        <section id="authSection">
+            <button class="main-btn" onclick="showRegister()">Register</button>
+            <button class="main-btn" onclick="showLogin()">Log In</button>
+        </section>
+
+        <section id="dashboard" style="display: none;">
+            <h2>Welcome to the Dashboard</h2>
+            <button onclick="openScheduleModal()">Add Schedule</button>
+            <table id="scheduleTable">
+                <thead>
+                    <tr>
+						<th>Teacher</th>
+                        <th>Subject</th>
+                        <th>Course</th>
+                        <th>Section</th>
+                        <th>Room</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Schedule entries will be dynamically added here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div id="registerModal" class="modal">
+    <div class="modal-content">
+        <h2>Register</h2>
+        <form id="registerForm" onsubmit="handleRegister(event)">
+            <input type="text" id="regUsername" placeholder="Username" required>
+            <input type="password" id="regPassword" placeholder="Password" required>
+            <select id="regRole">
+                <option value="" disabled selected>Select Role</option>
+                <option value="teacher">Teacher</option>
+                <option value="president">President</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+        <button onclick="closeModal('registerModal')" class="cancel">Cancel</button>
+    </div>
+</div>
+
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <h2>Log In</h2>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <input type="text" id="loginUsername" placeholder="Username" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit">Log In</button>
+        </form>
+        <button onclick="closeModal('loginModal')" class="cancel">Cancel</button>
+    </div>
+</div>
+
+
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content">
+            <h2>Fill Up Form</h2>
+            <form id="scheduleForm" onsubmit="submitSchedule(event)">
+				<input type="text" id="teacher" placeholder="Teacher" required>
+                <input type="text" id="subject" placeholder="Subject" required>
+                <select id="course" required>
+                    <option value="" disabled selected>Select Course</option>
+                    <option value="BSIT">BSIT</option>
+                    <option value="BSEMC">BSEMC</option>
+                    <option value="BSCS">BSCS</option>
+                </select>
+                <select id="section" required>
+                    <option value="" disabled selected>Select Section</option>
+                    <option value="BPO-1A">BPO-1A</option>
+                    <option value="BPO-1B">BPO-1B</option>        
+                    <option value="BPO-2A">BPO-2A</option>        
+                    <option value="BPO-2B">BPO-2B</option>        
+                    <option value="NS-1">NS-1</option>        
+                    <option value="MS-2">MS-2</option>        
+                    <option value="BA-1">BA-1</option>        
+                    <option value="BA-2">BA-2</option>        
+                    <option value="WMAD-1">WMAD-1</option>        
+                    <option value="WMAD-2">WMAD-2</option>        
+                    <option value="DA-1">DA-1</option>        
+                    <option value="DA-2">DA-2</option>        
+                </select>
+                <select id="day" required>
+                    <option value="" disabled selected>Select Day</option>
+                    <option value="MON">MONDAY</option>
+                    <option value="TUES">TUESDAY</option>
+                    <option value="WED">WEDNESDAY</option>
+                    <option value="THURS">THURSDAY</option>
+                    <option value="FRI">FRIDAY</option>
+                    <option value="SAT">SATURDAY</option>
+                </select>
+				<select id="room">
+                    <option value="" disabled selected>Select Room</option>
+                    <option value="101">101</option>
+                    <option value="102">102</option>
+                    <option value="103">103</option>
+                    <option value="104">104</option>
+                    <option value="201">201</option>
+                    <option value="202">202</option>
+                    <option value="203">203</option>
+                    <option value="204">204</option>
+                    <option value="301">301</option>
+                    <option value="302">302</option>
+                    <option value="304">304</option>
+                </select>
+                <input type="time" id="timeIn" required>
+                <input type="time" id="timeOut" required>
+                <button type="submit">Submit</button>
+            </form>
+            <button onclick="closeModal('scheduleModal')">Cancel</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
